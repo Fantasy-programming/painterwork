@@ -1,3 +1,9 @@
+import Navbar from "../components/Navbar";
+
 export default function GalleryPage() {
-  return <div>Gallery</div>;
+  return (
+    <>
+      <section className="m-20"></section>
+    </>
+  );
 }
