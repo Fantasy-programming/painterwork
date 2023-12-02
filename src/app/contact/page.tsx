@@ -8,10 +8,10 @@ export default function ContactPage() {
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Contact us!</h1>
             <p className="py-6">
-              "Color Your World. Contact Us Today. Painting Dreams into Reality.
-              Transforming Spaces, One Brushstroke at a Time. Let's Paint Your
-              Vision. Get in Touch. Your Walls, Our Canvas. Reach Out Now.
-              Bringing Life to Your Walls. Contact Us."
+              Color Your World. Contact Us Today. Painting Dreams into Reality.
+              Transforming Spaces, One Brushstroke at a Time. Let&apos;s Paint
+              Your Vision. Get in Touch. Your Walls, Our Canvas. Reach Out Now.
+              Bringing Life to Your Walls. Contact Us.
             </p>
           </div>
           <Form />
