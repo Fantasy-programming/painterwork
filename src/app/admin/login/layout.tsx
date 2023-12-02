@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-
-import "./globals.css";
+import "@/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Colorworks",
-  description: "A Painter you can trust",
+  title: "Colorworks Admin",
+  description: "admin panel",
 };
 
 export default function RootLayout({
@@ -21,11 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="colorwork">
       <body className={inter.className}>
-        <div className="min-h-screen pattern1">
-          <Navbar />
-          {children}
-          <Footer />
-        </div>
+        <div className="min-h-screen">{children}</div>
       </body>
     </html>
   );

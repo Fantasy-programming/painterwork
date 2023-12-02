@@ -1,51 +1,31 @@
+import Form from "./Form";
+
 export default function ContactPage() {
   return (
     <>
-      <section className=" lg:m-20 hero">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+      <section className="lg:m-20">
+        <div className="hero-content flex-col gap-24 lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Contact us!</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              "Color Your World. Contact Us Today. Painting Dreams into Reality.
+              Transforming Spaces, One Brushstroke at a Time. Let's Paint Your
+              Vision. Get in Touch. Your Walls, Our Canvas. Reach Out Now.
+              Bringing Life to Your Walls. Contact Us."
             </p>
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
-              </div>
-            </form>
-          </div>
+          <Form />
         </div>
+      </section>
+      <section className="lg:m-20">
+        <h2 className="text-5xl font-bold mb-8">Where to find us!</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3971.0106747228356!2d-0.2151439253640314!3d5.5654339944150815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNcKwMzMnNTUuNiJOIDDCsDEyJzQ1LjMiVw!5e0!3m2!1sfr!2sgh!4v1701541475141!5m2!1sfr!2sgh"
+          allowFullScreen={true}
+          className="w-full h-96"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
       </section>
     </>
   );

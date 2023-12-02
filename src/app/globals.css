@@ -2,35 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root { */
-/*   --foreground-rgb: 0, 0, 0; */
-/*   --background-start-rgb: 214, 219, 220; */
-/*   --background-end-rgb: 255, 255, 255; */
-/* } */
-/**/
-/* @media (prefers-color-scheme: dark) { */
-/*   :root { */
-/*     --foreground-rgb: 255, 255, 255; */
-/*     --background-start-rgb: 0, 0, 0; */
-/*     --background-end-rgb: 0, 0, 0; */
-/*   } */
-/* } */
-/**/
-/* body { */
-/*   color: rgb(var(--foreground-rgb)); */
-/*   background: linear-gradient( */
-/*       to bottom, */
-/*       transparent, */
-/*       rgb(var(--background-end-rgb)) */
-/*     ) */
-/*     rgb(var(--background-start-rgb)); */
-/* } */
+body {
+  background-color: oklch(var(--b1));
+  color: oklch(var(--n));
+}
 
-/* .hero { */
-/*   background-size: 3em 3em; */
-/*   background-image: linear-gradient( */
-/*       rgba(var(--pc) / 0.5) 0.1em, */
-/*       transparent 0.1em */
-/*     ), */
-/*     linear-gradient(90deg, rgba(var(--pc) / 0.5) 0.1em, transparent 0.1em); */
-/* } */
+.pattern1 {
+  background-color: transparent;
+  background-image: linear-gradient(
+      0deg,
+      transparent 24%,
+      oklch(var(--pc) / 0.5) 25%,
+      oklch(var(--pc) / 0.5) 26%,
+      transparent 27%,
+      transparent 74%,
+      oklch(var(--pc) / 0.5) 75%,
+      oklch(var(--pc) / 0.5) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      oklch(var(--pc) / 0.5) 25%,
+      oklch(var(--pc) / 0.5) 26%,
+      transparent 27%,
+      transparent 74%,
+      oklch(var(--pc) / 0.5) 75%,
+      oklch(var(--pc) / 0.5) 76%,
+      transparent 77%,
+      transparent
+    );
+  height: 100%;
+  background-size: 50px 50px;
+}

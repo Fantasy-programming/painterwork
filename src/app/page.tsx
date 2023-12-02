@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <>
@@ -19,16 +21,10 @@ export default function Home() {
       <section className="flex gap-10 m-20">
         <div className="diff aspect-[16/9]">
           <div className="diff-item-1">
-            <img
-              alt="daisy"
-              src="https://daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a.jpg"
-            />
+            <Image width={500} height={500} alt="daisy" src="/after.webp" />
           </div>
           <div className="diff-item-2">
-            <img
-              alt="daisy"
-              src="https://daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a-bw.jpg"
-            />
+            <Image width={500} height={500} alt="daisy" src="/before.webp" />
           </div>
           <div className="diff-resizer"></div>
         </div>

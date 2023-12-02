@@ -32,7 +32,7 @@ function Navbar() {
           </svg>
           <input
             type="checkbox"
-            value="dark"
+            value="darkwork"
             className="toggle theme-controller"
           />
           <svg
