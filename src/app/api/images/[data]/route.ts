@@ -23,21 +23,21 @@ export const GET = async (_req: NextRequest, { params }: { params: { data: strin
       .toArray();
 
     if (files.length === 0) {
-      return NextResponse.error();
+      return NextResponse.json({ error: "No file found" }, { status: 500 });
     }
 
     // the result is an array and i take the first element found
     const file = files[0];
 
     //reading file using openDownloadStreamByName
-    const stream = bucket.openDownloadStreamByName(file.filename);
+    const stream = bucket.openDownloadStreamByName(file.filename) as any;
 
     return new NextResponse(stream, {
-      Headers: { "Content-Type": file.contentType },
+      headers: { "Content-Type": file.contentType || "application/octet-stream" },
     });
   } catch (e) {
     console.error("Error:", e);
-    return NextResponse.error();
+    return NextResponse.json({ error: "Get 2 server Error" }, { status: 500 });
   }
 };
 
@@ -65,6 +65,6 @@ export const DELETE = async (req: NextRequest, { params }: { params: { data: str
     return NextResponse.json({ msg: "ok" });
   } catch (e) {
     console.log(e);
-    return NextResponse.error();
+    return NextResponse.json({ error: "Delete: Internal Server Error" }, { status: 500 });
   }
 };

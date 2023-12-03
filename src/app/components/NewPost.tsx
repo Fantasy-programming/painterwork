@@ -37,9 +37,9 @@ const NewPost: React.FC = () => {
 
     formData.append("name", data.name);
 
-    for (let file of data.imageUrl) {
+    Array.from(data.imageUrl).forEach((file: File) => {
       formData.append(file.name, file);
-    }
+    });
 
     await fetch("/api/images", {
       method: "POST",
@@ -55,15 +55,9 @@ const NewPost: React.FC = () => {
   return (
     <main className="flex flex-col items-center justify-between ">
       <div className="max-w-md mx-auto">
-        <form
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="input1"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="input1">
               Text Input 1
             </label>
             <input
@@ -76,10 +70,7 @@ const NewPost: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="fileInput"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fileInput">
               File Input
             </label>
             <input

@@ -17,22 +17,25 @@ export const POST = async (req: NextRequest) => {
 
     const entries = Array.from(formData.entries());
 
-    for (let i = 0; i < entries.length; i++) {
-      const [key, value] = entries[i];
+    // Use Promise.all to ensure all entries are processed before proceeding
+    await Promise.all(
+      entries.map(async ([key, value]) => {
+        if (key === "name") {
+          name = value as string;
+        }
 
-      if (key === "name") {
-        name = value as string;
-      }
+        if (typeof value == "object" && value instanceof File) {
+          image = `${Date.now()}_${value.name ?? "image"}`;
 
-      if (typeof value == "object" && value instanceof File) {
-        image = `${Date.now()}_${value.name ?? "image"}`;
-
-        const buffer = Buffer.from(await value.arrayBuffer());
-        const stream = Readable.from(buffer);
-        const uploadStream = bucket.openUploadStream(image, {});
-        await stream.pipe(uploadStream);
-      }
-    }
+          const buffer = Buffer.from(await value.arrayBuffer());
+          const stream = Readable.from(buffer);
+          const uploadStream = bucket.openUploadStream(image, {});
+          await new Promise((resolve, reject) => {
+            stream.pipe(uploadStream).on("finish", resolve).on("error", reject);
+          });
+        }
+      })
+    );
 
     if (!name || !image) {
       throw new Error("Name or image not provided");
@@ -48,7 +51,7 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ msg: "ok" });
   } catch (e) {
     console.error("Error:", e);
-    return NextResponse.error();
+    return NextResponse.json({ error: "Post: Internal Server Error" }, { status: 500 });
   }
 };
 
@@ -59,6 +62,6 @@ export const GET = async () => {
     return NextResponse.json(posts);
   } catch (e) {
     console.error("Error:", e);
-    return NextResponse.error();
+    return NextResponse.json({ error: "Get1: Internal Server Error" }, { status: 500 });
   }
 };
