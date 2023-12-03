@@ -1,28 +1,38 @@
-import mongoose from "mongoose";
+import mongoose, { Connection, mongo } from "mongoose";
 
-let client = null;
-let bucket = null;
+let client: Connection | null = null;
+let bucket: mongo.GridFSBucket | null = null;
 
-const MONGOB_URI = process.env.MONGOB_URI;
+const MONGODB_URI: string | undefined = process.env.MONGODB_URI;
 
-async function connectToDb() {
-  if (client) {
+async function connectDB(): Promise<{
+  client: Connection;
+  bucket: mongo.GridFSBucket;
+}> {
+  if (client && bucket) {
     return { client, bucket };
   }
 
-  await mongoose.connect(MONGOB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  if (!MONGODB_URI) {
+    throw new Error("MongoDB URI not provided");
+  }
 
-  client = mongoose.connection;
-  const db = mongoose.connection; // Use mongoose.connection directly
-  bucket = new mongoose.mongo.GridFSBucket(db, {
-    bucketName: "images",
-  });
+  try {
+    await mongoose.connect(MONGODB_URI);
 
-  console.log("Connected to the Database");
-  return { client, bucket };
+    client = mongoose.connection;
+    // const db = mongoose.connection; // Use mongoose.connection directly
+
+    bucket = new mongoose.mongo.GridFSBucket(client.db, {
+      bucketName: "images",
+    });
+
+    console.log("Connected to the Database");
+    return { client, bucket };
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+    throw error;
+  }
 }
 
-export default connectToDb;
+export default connectDB;

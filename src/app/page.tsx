@@ -1,16 +1,18 @@
 import Image from "next/image";
+import PriceCalculator from "@/components/PriceCalculator";
 
 export default function Home() {
   return (
     <>
-      <section className="">
+      <section>
         <main className="flex items-center flex-col justify-center h-full m-40">
           <div className="lg:-rotate-6 mb-10 md:-translate-y-20">
             <h1 className="lg:text-9xl md:text-8xl text-5xl font-semibold lg:-translate-x-32">
-              Colorworks
+              Color<span className="text-accent">works</span>
             </h1>
             <h1 className="lg:text-9xl md:text-8xl text-5xl font-semibold lg:translate-x-32">
-              Painting LLC
+              Pain<span className="text-secondary">ting</span>
+              LLC
             </h1>
           </div>
           <a href="/contact" className="btn btn-accent w-80">
@@ -18,8 +20,8 @@ export default function Home() {
           </a>
         </main>
       </section>
-      <section className="flex gap-10 m-20">
-        <div className="diff aspect-[16/9]">
+      <section className="flex flex-col md:flex-row gap-10 sm:p-20 p-10 bg-primary text-base-100">
+        <div className="diff aspect-[16/9] w-full md:w-1/2">
           <div className="diff-item-1">
             <Image width={500} height={500} alt="daisy" src="/after.webp" />
           </div>
@@ -28,70 +30,28 @@ export default function Home() {
           </div>
           <div className="diff-resizer"></div>
         </div>
-        <div>
-          <h2>bal bala al</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ex
-            culpa est praesentium illum ratione soluta exercitationem dolor
-            neque deleniti, nesciunt odit debitis commodi, sit, earum enim
-            inventore voluptatibus dignissimos.
+        <div className="w-full md:w-1/2 text-center md:text-left">
+          <h2 className="text-2xl leading-loose">Transform Your Space</h2>
+          <p className="leading-loose">
+            Experience the astonishing difference. Our skilled painters work wonders, turning cream walls into brilliant
+            white canvases. From a muted tone to a vibrant, fresh hue that breathes life into every corner. But
+            that&apos;s not all—we elevate your space further by adding finesse to details. The stairs, once overlooked,
+            are now beautifully adorned, complementing the renewed walls with a touch of elegance.
           </p>
         </div>
       </section>
-      <section className="m-20">
-        <h2 className="text-4xl text-center">Price Estimation</h2>
-        <div className="flex gap-10">
-          <div className="w-1/2">
-            <div className="flex gap-5 ">
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">Room size</span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Type here"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </label>
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">Room size</span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Type here"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </label>
-            </div>
-            <div className="flex gap-5 ">
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">Room size</span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Type here"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </label>
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">Room size</span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Type here"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </label>
-            </div>
-          </div>
-          <div className="flex justify-center items-center w-1/2">
-            <h3>2500 GHC</h3>
-          </div>
+      <section className="bg-base-100 p-10">
+        <h2 className="text-center text-4xl">We have a wide range of colors covering for all your needs</h2>
+        <div>
+          <h2>bal bala al</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ex culpa est praesentium illum ratione soluta
+            exercitationem dolor neque deleniti, nesciunt odit debitis commodi, sit, earum enim inventore voluptatibus
+            dignissimos.
+          </p>
         </div>
       </section>
+      <PriceCalculator />
     </>
   );
 }
