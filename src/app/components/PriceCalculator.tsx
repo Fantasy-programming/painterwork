@@ -1,86 +1,82 @@
 "use client";
 
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+
+type FormData = {
+  roomHeight: number;
+  roomWidth: number;
+  numRooms: number;
+};
 
 const PriceEstimator = () => {
-  const [roomHeight, setRoomHeight] = useState("");
-  const [roomWidth, setRoomWidth] = useState("");
-  const paintPrice = 200; // Paint price is unchangeable
-  const [numRooms, setNumRooms] = useState("");
-  const [estimatedPrice, setEstimatedPrice] = useState("0");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+  const [estimatedPrice, setEstimatedPrice] = useState<string>("0");
 
-  const handleHeightChange = (e) => {
-    setRoomHeight(e.target.value);
-  };
-
-  const handleWidthChange = (e) => {
-    setRoomWidth(e.target.value);
-  };
-
-  const handleNumRoomsChange = (e) => {
-    setNumRooms(e.target.value);
-  };
-
-  const calculatePrice = (): string => {
-    const area = Number(roomHeight) * Number(roomWidth);
-    const pricePerSquareFoot = paintPrice / (7 * 7); // Assuming 7ft x 7ft area per $200 of paint
-    const totalArea = area * Number(numRooms);
+  const calculatePrice = ({ roomHeight, roomWidth, numRooms }: FormData): string => {
+    const area = roomHeight * roomWidth;
+    const paintPrice = 200;
+    const pricePerSquareFoot = paintPrice / (7 * 7);
+    const totalArea = area * numRooms;
     const totalCost = totalArea * pricePerSquareFoot;
-    return totalCost.toFixed(2); // Adjust this based on your pricing structure
+    return totalCost.toFixed(2);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const totalPrice = calculatePrice();
+  const onSubmit = (data: FormData) => {
+    const totalPrice = calculatePrice(data);
     setEstimatedPrice(totalPrice);
-    // You can use totalPrice in further operations (e.g., display to the user)
-    console.log(`The estimated price for ${numRooms} rooms is: $${totalPrice}`);
   };
 
   return (
-    <section className="m-20" id="estimator">
+    <section className="m-10 md:m-20" id="estimator">
       <h2 className="text-4xl text-center font-semibold mb-10">Price Estimation</h2>
-      <div className="flex gap-10">
-        <div className="w-1/2 card bg-base-100 shadow-2xl max-w-xl shrink-0 ">
-          <form onSubmit={handleSubmit} className="card-body">
-            <div className="flex gap-5 ">
+      <div className="flex flex-col-reverse md:flex-row gap-10">
+        <div className="w-full md:w-1/2 card bg-base-100 shadow-2xl max-w-xl shrink-0 ">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+            <div className="flex flex-col md:flex-row gap-5 ">
               <label className="form-control w-full max-w-xs">
                 <div className="label">
                   <span className="label-text">Room Height (in feet)</span>
                 </div>
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
-                  value={roomHeight}
-                  onChange={handleHeightChange}
+                  {...register("roomHeight", { required: true, min: 1 })}
                 />
+                {errors.roomHeight && <span className="text-error label-text">Please enter a valid height.</span>}
               </label>
               <label className="form-control w-full max-w-xs">
                 <div className="label">
                   <span className="label-text">Room Width (in feet)</span>
                 </div>
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
-                  value={roomWidth}
-                  onChange={handleWidthChange}
+                  {...register("roomWidth", { required: true, min: 1 })}
                 />
+                {errors.roomWidth && <span className="text-error label-text">Please enter a valid width.</span>}
               </label>
             </div>
-            <div className="flex gap-5 ">
+            <div className="flex flex-col md:flex-row  gap-5 ">
               <label className="form-control w-full max-w-xs">
                 <div className="label">
                   <span className="label-text">Number of Rooms</span>
                 </div>
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
-                  value={numRooms}
-                  onChange={handleNumRoomsChange}
+                  {...register("numRooms", { required: true, min: 1 })}
                 />
+                {errors.numRooms && (
+                  <span className="label-text text-error">Please enter a valid number of rooms.</span>
+                )}
               </label>
               <label className="form-control w-full max-w-xs">
                 <div className="label">
@@ -90,8 +86,8 @@ const PriceEstimator = () => {
                   type="text"
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
-                  value={paintPrice}
-                  readOnly // Paint price is unchangeable
+                  value={200}
+                  disabled
                 />
               </label>
             </div>
@@ -100,7 +96,7 @@ const PriceEstimator = () => {
             </button>
           </form>
         </div>
-        <div className="flex justify-center items-center w-1/2">
+        <div className="flex justify-center items-center w-full md:w-1/2 ">
           <h3 className="text-6xl font-semibold font-mono">{`GH₵${estimatedPrice}`}</h3>
         </div>
       </div>
