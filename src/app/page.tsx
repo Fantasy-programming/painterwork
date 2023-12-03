@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PriceCalculator from "@/components/PriceCalculator";
+import Colors from "@/components/Colors";
 
 export default function Home() {
   return (
@@ -40,17 +41,7 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className="bg-base-100 p-10">
-        <h2 className="text-center text-4xl">We have a wide range of colors covering for all your needs</h2>
-        <div>
-          <h2>bal bala al</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ex culpa est praesentium illum ratione soluta
-            exercitationem dolor neque deleniti, nesciunt odit debitis commodi, sit, earum enim inventore voluptatibus
-            dignissimos.
-          </p>
-        </div>
-      </section>
+      <Colors />
       <PriceCalculator />
     </>
   );

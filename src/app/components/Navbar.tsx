@@ -24,7 +24,7 @@ function Navbar() {
                   <Link href="/#estimator">Price Estimator</Link>
                 </li>
                 <li>
-                  <Link href="#colors">Available Colors</Link>
+                  <Link href="/#colors">Available Colors</Link>
                 </li>
               </ul>
             </li>
@@ -46,7 +46,7 @@ function Navbar() {
           <Link href="/#estimator">Price Estimator</Link>
         </li>
         <li>
-          <Link href="#colors">Available Colors</Link>
+          <Link href="/#colors">Available Colors</Link>
         </li>
         <li>
           <Link href="/gallery">Our Work</Link>

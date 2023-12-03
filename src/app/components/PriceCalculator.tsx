@@ -33,7 +33,12 @@ const PriceEstimator = () => {
 
   return (
     <section className="m-10 md:m-20" id="estimator">
-      <h2 className="text-4xl text-center font-semibold mb-10">Price Estimation</h2>
+      <h2 className="text-4xl text-center font-semibold mb-10">
+        Price
+        <span className="text-secondary underline decoration-wavy underline-offset-4 decoration-accent">
+          Estimation
+        </span>
+      </h2>
       <div className="flex flex-col-reverse md:flex-row gap-10">
         <div className="w-full md:w-1/2 card bg-base-100 shadow-2xl max-w-xl shrink-0 ">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -97,7 +102,7 @@ const PriceEstimator = () => {
           </form>
         </div>
         <div className="flex justify-center items-center w-full md:w-1/2 ">
-          <h3 className="text-6xl font-semibold font-mono">{`GH₵${estimatedPrice}`}</h3>
+          <h3 className=" text-4xl md:text-6xl font-semibold font-mono">{`GH₵${estimatedPrice}`}</h3>
         </div>
       </div>
     </section>
