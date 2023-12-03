@@ -1,8 +1,10 @@
 import Gallery from "@/components/Gallery";
+import { url } from "@utils/env";
 
 const getData = async () => {
+  console.log("url", url);
   try {
-    const res = await fetch("http://localhost:3000/api/images", {
+    const res = await fetch(`${url}/api/images`, {
       cache: "no-store",
     });
     return await res.json();

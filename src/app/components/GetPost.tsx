@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { publicUrl } from "@utils/env";
 
 interface PostData {
   _id: string;
@@ -11,7 +12,7 @@ interface PostData {
 
 const deleteImag = async (id: string): Promise<any> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/images/${id}`, {
+    const res = await fetch(`${publicUrl}/api/images/${id}`, {
       method: "DELETE",
     });
     return await res.json();
@@ -27,14 +28,11 @@ const GetPosts: React.FC<{ data: PostData[] }> = ({ data }) => {
     <div>
       <div className="grid  container mx-auto w-11/12 grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
         {data?.map((item: PostData, index: number) => (
-          <div
-            key={index}
-            className="border shadow-lg rounded-lg hover:scale-105 duration-300"
-          >
+          <div key={index} className="border shadow-lg rounded-lg hover:scale-105 duration-300">
             <Image
               width={200}
               height={200}
-              src={`http://localhost:3000/api/images/${item.imageUrl}`}
+              src={`${publicUrl}/api/images/${item.imageUrl}`}
               alt={item.name}
               className="w-full h-[200px] object-cover rounded-t-lg"
             />
@@ -46,9 +44,7 @@ const GetPosts: React.FC<{ data: PostData[] }> = ({ data }) => {
                   router.refresh();
                 }}
               >
-                <span className="bg-red-500 text-white p-1 rounded-md">
-                  delete
-                </span>
+                <span className="bg-red-500 text-white p-1 rounded-md">delete</span>
               </button>
             </div>
           </div>

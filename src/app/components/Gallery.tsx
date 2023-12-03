@@ -29,7 +29,7 @@ const Gallery: React.FC<{ data: PostData[] }> = ({ data }) => {
   return (
     <div className="grid grid-cols-4 gap-3  ">
       {data?.map((item: PostData, index: number) => (
-        <Picture key={index} imgUrl={`http://localhost:3000/api/images/${item.imageUrl}`} alt={item.name} />
+        <Picture key={index} imgUrl={`${process.env.BASE_URI}/api/images/${item.imageUrl}`} alt={item.name} />
       ))}
     </div>
   );

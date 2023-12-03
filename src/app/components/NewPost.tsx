@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { url } from "@utils/env";
 
 interface FormData {
   name: string;
@@ -41,7 +42,7 @@ const NewPost: React.FC = () => {
       formData.append(file.name, file);
     });
 
-    await fetch("/api/images", {
+    await fetch(`${url}/api/images`, {
       method: "POST",
       body: formData,
     });

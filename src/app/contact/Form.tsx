@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { toast, Toaster } from "react-hot-toast";
+import { publicUrl } from "@utils/env";
 
 type FormInput = {
   name: string;
@@ -20,7 +21,7 @@ export default function ContactForm() {
   } = useForm<FormInput>();
 
   const onsubmit = async (data: FormInput) => {
-    await fetch("/api/send", {
+    await fetch(`${publicUrl}/api/send`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -54,13 +55,7 @@ export default function ContactForm() {
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
-              <input
-                type="text"
-                placeholder="Name"
-                className="input input-bordered"
-                required
-                {...register("name")}
-              />
+              <input type="text" placeholder="Name" className="input input-bordered" required {...register("name")} />
             </div>
           </div>
           <div>
@@ -80,14 +75,9 @@ export default function ContactForm() {
           <div>
             <label className="form-control w-full ">
               <div className="label">
-                <span className="label-text">
-                  How would you like to hear back from us?
-                </span>
+                <span className="label-text">How would you like to hear back from us?</span>
               </div>
-              <select
-                className="select select-bordered"
-                {...register("medium")}
-              >
+              <select className="select select-bordered" {...register("medium")}>
                 <option selected>By Phone</option>
                 <option>By Email</option>
               </select>
@@ -106,11 +96,7 @@ export default function ContactForm() {
             />
           </div>
           <div className="form-control mt-6">
-            <button
-              className="btn btn-primary"
-              disabled={isSubmitting}
-              type="submit"
-            >
+            <button className="btn btn-primary" disabled={isSubmitting} type="submit">
               Send
             </button>
           </div>
