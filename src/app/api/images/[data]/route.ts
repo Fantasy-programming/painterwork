@@ -41,7 +41,7 @@ export const GET = async (_req: NextRequest, { params }: { params: { data: strin
   }
 };
 
-export const DELETE = async (req: Request, { params }: { params: { data: string } }) => {
+export const DELETE = async (req: NextRequest, { params }: { params: { data: string } }) => {
   const { client, bucket } = await connectToDb();
 
   try {
