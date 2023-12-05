@@ -10,6 +10,8 @@ const getColors = async () => {
     const res = await fetch(`${url}/api/colors`, {
       cache: "no-store",
     });
+    console.log(url);
+    console.log(res);
     return await res.json();
   } catch (e) {
     console.log(e);
@@ -18,6 +20,7 @@ const getColors = async () => {
 
 export default async function Home() {
   const data = await getColors();
+  console.log(data);
   return (
     <>
       <HeroSection />

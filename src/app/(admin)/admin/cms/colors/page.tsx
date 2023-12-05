@@ -15,6 +15,7 @@ const getColors = async () => {
     const res = await fetch(`${url}/api/colors`, {
       cache: "no-store",
     });
+    console.log(res);
     return await res.json();
   } catch (e) {
     console.log(e);
@@ -30,6 +31,7 @@ const filterData = async (query: string, data: ColorData[]) => {
 const page = async ({ searchParams }: { searchParams?: { query?: string } }) => {
   const query = searchParams?.query || "";
   const rawdata = await getColors();
+  console.log(rawdata);
   const data = await filterData(query, rawdata);
   return (
     <>
