@@ -12,6 +12,7 @@ export const POST = async (req: NextRequest) => {
 
     let name: string | undefined;
     let image: string | undefined;
+    let description: string | undefined;
 
     const formData = await req.formData();
 
@@ -24,6 +25,10 @@ export const POST = async (req: NextRequest) => {
           name = value as string;
         }
 
+        if (key === "description") {
+          description = value as string;
+        }
+
         if (typeof value == "object" && value instanceof File) {
           image = `${Date.now()}_${value.name ?? "image"}`;
 
@@ -34,15 +39,16 @@ export const POST = async (req: NextRequest) => {
             stream.pipe(uploadStream).on("finish", resolve).on("error", reject);
           });
         }
-      })
+      }),
     );
 
-    if (!name || !image) {
-      throw new Error("Name or image not provided");
+    if (!name || !image || !description) {
+      throw new Error("Name or image or description not provided");
     }
 
     const newItem: IPosts = new Posts({
       name,
+      description,
       imageUrl: image,
     });
 
@@ -51,7 +57,10 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ msg: "ok" });
   } catch (e) {
     console.error("Error:", e);
-    return NextResponse.json({ error: "Post: Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Post: Internal Server Error" },
+      { status: 500 },
+    );
   }
 };
 
@@ -62,6 +71,9 @@ export const GET = async () => {
     return NextResponse.json(posts);
   } catch (e) {
     console.error("Error:", e);
-    return NextResponse.json({ error: "Get1: Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Get1: Internal Server Error" },
+      { status: 500 },
+    );
   }
 };

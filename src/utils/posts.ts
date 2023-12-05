@@ -2,11 +2,13 @@ import mongoose, { Schema, Model, Document } from "mongoose";
 
 export interface IPosts extends Document {
   name: string;
+  description: string;
   imageUrl: string;
 }
 
 const postsSchema = new Schema<IPosts>({
   name: { type: String },
+  description: { type: String },
   imageUrl: { type: String },
 });
 

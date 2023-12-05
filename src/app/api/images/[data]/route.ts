@@ -10,7 +10,10 @@ interface Request {
   params: { data: string };
 }
 
-export const GET = async (_req: NextRequest, { params }: { params: { data: string } }) => {
+export const GET = async (
+  _req: NextRequest,
+  { params }: { params: { data: string } },
+) => {
   try {
     const { client, bucket } = await connectToDb();
 
@@ -33,7 +36,9 @@ export const GET = async (_req: NextRequest, { params }: { params: { data: strin
     const stream = bucket.openDownloadStreamByName(file.filename) as any;
 
     return new NextResponse(stream, {
-      headers: { "Content-Type": file.contentType || "application/octet-stream" },
+      headers: {
+        "Content-Type": file.contentType || "application/octet-stream",
+      },
     });
   } catch (e) {
     console.error("Error:", e);
@@ -41,12 +46,17 @@ export const GET = async (_req: NextRequest, { params }: { params: { data: strin
   }
 };
 
-export const DELETE = async (req: NextRequest, { params }: { params: { data: string } }) => {
+export const DELETE = async (
+  req: NextRequest,
+  { params }: { params: { data: string } },
+) => {
   const { client, bucket } = await connectToDb();
 
   try {
     const { data } = params;
-    const deletedPost = (await Posts.findOneAndDelete<IPosts>({ _id: data })) as unknown as IPosts | null;
+    const deletedPost = (await Posts.findOneAndDelete<IPosts>({
+      _id: data,
+    })) as unknown as IPosts | null;
 
     if (!deletedPost || !deletedPost.imageUrl) {
       return NextResponse.error();
@@ -65,6 +75,9 @@ export const DELETE = async (req: NextRequest, { params }: { params: { data: str
     return NextResponse.json({ msg: "ok" });
   } catch (e) {
     console.log(e);
-    return NextResponse.json({ error: "Delete: Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Delete: Internal Server Error" },
+      { status: 500 },
+    );
   }
 };

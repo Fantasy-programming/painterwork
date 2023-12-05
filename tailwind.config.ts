@@ -26,8 +26,8 @@ const config: Config = {
         },
         darkwork: {
           primary: "#dedede",
-          secondary: "#75edff",
-          accent: "#852960",
+          secondary: "#00798C",
+          accent: "#D67AB1",
           neutral: "#e0e0e0",
           "base-100": "#2e2e2e",
           info: "#00B1CC",
