@@ -59,7 +59,7 @@ const ColorSection = ({ data }: ColorSectionProps) => {
 };
 
 export const Colors = ({ data, limit = null, more }: ColorsProps) => {
-  const filteredData = limit ? data.slice(0, limit) : data;
+  const filteredData = data ? (limit ? data.slice(0, limit) : data) : [];
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-y-10">
       {filteredData?.map((item) => (
