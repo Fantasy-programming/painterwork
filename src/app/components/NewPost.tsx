@@ -51,7 +51,7 @@ const NewPost: React.FC = () => {
 
     setPreviewImage(null);
     reset();
-    document.getElementById("newModal")?.close();
+    (document.getElementById("newModal") as HTMLFormElement)?.close();
     toast.success("Image added sucessfully");
     router.refresh();
   };
@@ -66,10 +66,7 @@ const NewPost: React.FC = () => {
           <h3 className="font-bold text-lg capitalize">Add new content</h3>
           <form className=" pt-6 pb-8 mb-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="Name"
-              >
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Name">
                 Location
               </label>
               <input
@@ -82,10 +79,7 @@ const NewPost: React.FC = () => {
             </div>
 
             <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="Description"
-              >
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Description">
                 Description
               </label>
               <textarea
@@ -97,10 +91,7 @@ const NewPost: React.FC = () => {
             </div>
 
             <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="fileInput"
-              >
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fileInput">
                 File Input
               </label>
               <input

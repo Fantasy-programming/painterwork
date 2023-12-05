@@ -19,23 +19,17 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ msg: "ok" });
   } catch (e) {
     console.error("Error:", e);
-    return NextResponse.json(
-      { error: "Post: Internal Server Error" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Post: Internal Server Error" }, { status: 500 });
   }
 };
 
 export const GET = async () => {
   try {
-    const { client, bucket } = await connectToDb();
+    await connectToDb();
     const posts: IColors[] = await Color.find({});
     return NextResponse.json(posts);
   } catch (e) {
     console.error("Error:", e);
-    return NextResponse.json(
-      { error: "Get: Internal Server Error - Colors" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Get: Internal Server Error - Colors" }, { status: 500 });
   }
 };

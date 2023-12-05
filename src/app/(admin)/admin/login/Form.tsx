@@ -30,7 +30,7 @@ function Form() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setError(params.get("error"));
+    setError(params.get("error") || "");
   }, [params]);
 
   if (session.status === "authenticated") {
@@ -61,11 +61,7 @@ function Form() {
           })}
         />
 
-        {errors.email?.message && (
-          <small className="block text-error w-full">
-            {errors.email.message}
-          </small>
-        )}
+        {errors.email?.message && <small className="block text-error w-full">{errors.email.message}</small>}
       </div>
       <div className="form-control">
         <label className="label" htmlFor="password">
@@ -80,11 +76,7 @@ function Form() {
           })}
         />
 
-        {errors.password?.message && (
-          <small className="block text-error w-full">
-            {errors.password.message}
-          </small>
-        )}
+        {errors.password?.message && <small className="block text-error w-full">{errors.password.message}</small>}
       </div>
       <div className="form-control mt-6">
         <button className="btn btn-primary" disabled={isSubmitting}>

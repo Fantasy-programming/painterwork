@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-function Search({ searchText }) {
+function Search({ searchText }: { searchText: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -27,7 +27,7 @@ function Search({ searchText }) {
       />
       <button
         className="btn uppercase btn-outline btn-primary"
-        onClick={() => document.getElementById("newModal")?.showModal()}
+        onClick={() => (document.getElementById("newModal") as HTMLFormElement)?.close()}
       >
         Add new
       </button>

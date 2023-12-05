@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import bcrypt from "bcrypt";
 
 // Auth Providers
@@ -10,7 +10,9 @@ import dbConnect from "./connectDB";
 import clientPromise from "./mongoclientpromise";
 import User from "@/models/User";
 
-export const authOptions = {
+//Types
+
+export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
   session: {
     strategy: "jwt",
@@ -42,10 +44,7 @@ export const authOptions = {
             throw new Error("User not found");
           }
 
-          const isMatch = await bcrypt.compare(
-            credentials?.password,
-            user.password,
-          );
+          const isMatch = await bcrypt.compare(credentials?.password, user.password);
 
           if (!isMatch) {
             throw new Error("Email or password is incorrect");
@@ -56,7 +55,7 @@ export const authOptions = {
             ...user,
           };
         } catch (err) {
-          throw new Error(err);
+          throw new Error(String(err));
         }
       },
     }),
@@ -69,7 +68,7 @@ export const authOptions = {
   },
   callbacks: {
     // This is called whenever a session is checked (We can pass additional info from the user doc).
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: any; user: any }) {
       if (user) {
         token.user = {
           id: user.id,
@@ -81,7 +80,9 @@ export const authOptions = {
     // If we want to access our extra user info from sessions we have to pass it the token here to get them in sync:
     session: async ({ session, token }) => {
       if (token) {
-        session.user = token.user;
+        session.user = token?.user as
+          | { name?: string | null | undefined; email?: string | null | undefined; image?: string | null | undefined }
+          | undefined;
       }
       return session;
     },

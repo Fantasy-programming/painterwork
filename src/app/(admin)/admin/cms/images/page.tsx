@@ -1,8 +1,6 @@
 import GetPosts from "@/components/GetPost";
 import NewPost from "@/components/NewPost";
 import Search from "@/components/Search";
-
-import { IPosts } from "@utils/posts";
 import { url } from "@utils/env";
 
 type PostData = {

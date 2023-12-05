@@ -27,11 +27,7 @@ const filterData = async (query: string, data: ColorData[]) => {
   });
 };
 
-const page = async ({
-  searchParams,
-}: {
-  searchParams?: { query?: string };
-}) => {
+const page = async ({ searchParams }: { searchParams?: { query?: string } }) => {
   const query = searchParams?.query || "";
   const rawdata = await getColors();
   const data = await filterData(query, rawdata);
