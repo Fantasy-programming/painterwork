@@ -1,19 +1,20 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
 
-import { NextAuthProvider } from "@/Provider";
+import { NextAuthProvider } from '@/Provider';
 
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import { Inter } from 'next/font/google';
 
-import "@/globals.css";
+import Footer from './_components/Footer';
+import Navbar from './_components/Navbar';
 
-const inter = Inter({ subsets: ["latin"] });
+import '@/globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Colorworks",
-  description: "A Painter you can trust",
+  title: 'Colorworks',
+  description: 'Painters you can trust',
 };
 
 export default function RootLayout({

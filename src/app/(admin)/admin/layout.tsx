@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { NextAuthProvider } from "@/Provider";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { NextAuthProvider } from '@/Provider';
 
-import "@/globals.css";
+import '@/globals.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Colorworks Admin",
-  description: "admin panel",
+  title: 'Colorworks Admin',
+  description: 'admin panel',
 };
 
 export default function RootLayout({

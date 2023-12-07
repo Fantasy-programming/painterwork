@@ -1,38 +1,19 @@
-import { Colors } from "@/components/ColorSection";
-import NewColor from "@/components/NewColor";
-import Search from "@/components/Search";
+import { Colors } from '@/components/Colors';
+import NewColor from './NewColor';
+import Search from '@/components/Search';
 
-import { url } from "@utils/env";
+import { url } from '@/lib/env';
+import colorService, { ColorElement } from '@/db/colorService';
+import { searchFilter } from '@/lib/tools';
 
-type ColorData = {
-  _id: string;
-  name: string;
-  hexCode: string;
-};
-
-const getColors = async () => {
-  try {
-    const res = await fetch(`${url}/api/colors`, {
-      cache: "no-store",
-    });
-    console.log(res);
-    return await res.json();
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-const filterData = async (query: string, data: ColorData[]) => {
-  return data.filter((item: ColorData) => {
-    return item.name.toLowerCase().includes(query.toLowerCase());
-  });
-};
-
-const page = async ({ searchParams }: { searchParams?: { query?: string } }) => {
-  const query = searchParams?.query || "";
-  const rawdata = await getColors();
-  console.log(rawdata);
-  const data = await filterData(query, rawdata);
+const page = async ({
+  searchParams,
+}: {
+  searchParams?: { query?: string };
+}) => {
+  const query = searchParams?.query || '';
+  const rawdata = await colorService.getAll();
+  const data = searchFilter(query, rawdata) as ColorElement[];
   return (
     <>
       <div className="p-10">
@@ -42,7 +23,7 @@ const page = async ({ searchParams }: { searchParams?: { query?: string } }) => 
           <div className="py-10">
             <Colors data={data} more={false} />
           </div>
-          <NewColor />
+          <NewColor url={url || ''} />
         </div>
       </div>
     </>

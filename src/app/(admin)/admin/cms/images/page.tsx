@@ -1,31 +1,11 @@
-import GetPosts from "@/components/GetPost";
-import NewPost from "@/components/NewPost";
-import Search from "@/components/Search";
-import { url } from "@utils/env";
+import Posts from './Posts';
+import NewPost from './NewPost';
+import Search from '@/components/Search';
 
-type PostData = {
-  _id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
-};
+import { url } from '@/lib/env';
+import { searchFilter } from '@/lib/tools';
 
-const getData = async () => {
-  try {
-    const res = await fetch(`${url}/api/images`, {
-      cache: "no-store",
-    });
-    return await res.json();
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-const filterData = async (query: string, data: PostData[]) => {
-  return data.filter((item: PostData) => {
-    return item.name.toLowerCase().includes(query.toLowerCase());
-  });
-};
+import imageService, { GalleryElement } from '@/db/imageService';
 
 const page = async ({
   searchParams,
@@ -34,9 +14,9 @@ const page = async ({
     query?: string;
   };
 }) => {
-  const query = searchParams?.query || "";
-  const rawdata = await getData();
-  const data = await filterData(query, rawdata);
+  const query = searchParams?.query || '';
+  const rawdata = await imageService.getAll();
+  const data = searchFilter(query, rawdata) as GalleryElement[];
 
   return (
     <>
@@ -44,8 +24,8 @@ const page = async ({
         <h1 className="text-2xl text-primary uppercase">Images Showcase</h1>
         <div className="my-10 ">
           <Search searchText="Search images" />
-          <GetPosts data={data} />
-          <NewPost />
+          <Posts data={data} url={url || ''} />
+          <NewPost url={url || ''} />
         </div>
       </div>
     </>

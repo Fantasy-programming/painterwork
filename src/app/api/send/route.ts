@@ -1,8 +1,11 @@
-import { Resend } from "resend";
-import { NextRequest, NextResponse } from "next/server";
-import MessageUsEmail from "@/components/StaffEmail";
+import { Resend } from 'resend';
+import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { resendKey } from '@/lib/env';
+
+import MessageUsEmail from '@/components/mail/StaffEmail';
+
+const resend = new Resend(resendKey);
 
 export async function POST(req: NextRequest) {
   const { name, email, medium, phone, message } = await req.json();
@@ -10,8 +13,8 @@ export async function POST(req: NextRequest) {
 
   try {
     const data = await resend.emails.send({
-      from: "Hello <support@fantasyprogramming.tech>", // your verified domain
-      to: `${email}`, // the email address you want to send a message
+      from: 'Hello <support@fantasyprogramming.tech>',
+      to: `${email}`,
       subject: `${name} has a message!`,
       react: MessageUsEmail({ name, email, medium, phone, message }),
     });

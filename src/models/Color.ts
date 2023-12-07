@@ -1,4 +1,4 @@
-import mongoose, { Schema, Model, Document } from "mongoose";
+import mongoose, { Schema, Model, Document } from 'mongoose';
 
 export interface IColors extends Document {
   name: string;
@@ -11,6 +11,6 @@ const colorsSchema = new Schema<IColors>({
 });
 
 const ColorModel: Model<IColors> =
-  mongoose.models?.Colors || mongoose.model<IColors>("Colors", colorsSchema);
+  mongoose.models?.Colors || mongoose.model<IColors>('Colors', colorsSchema);
 
 export default ColorModel;

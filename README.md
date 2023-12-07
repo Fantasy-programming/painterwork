@@ -1,4 +1,6 @@
-## Getting Started
+## Colorworks
 
-user: admin@colorworks.com
-password: color2000
+This is a website for some painting company.
+
+email: 'admin@test.com'
+password: test

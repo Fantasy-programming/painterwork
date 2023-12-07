@@ -1,16 +1,9 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import { toast, Toaster } from "react-hot-toast";
-import { publicUrl } from "@utils/env";
+import { useForm } from 'react-hook-form';
+import { toast, Toaster } from 'react-hot-toast';
 
-type FormInput = {
-  name: string;
-  email: string;
-  phone: string;
-  medium: string;
-  message: string;
-};
+import resend, { MailInput } from '@/vendor/resendService';
 
 export default function ContactForm() {
   const {
@@ -18,16 +11,15 @@ export default function ContactForm() {
     handleSubmit,
     formState: { isSubmitting },
     reset,
-  } = useForm<FormInput>();
+  } = useForm<MailInput>();
 
-  const onsubmit = async (data: FormInput) => {
-    await fetch(`${publicUrl}/api/send`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    }).then(() => {
-      toast.success("We will get back to you soon");
-    });
+  const onsubmit = async (data: MailInput) => {
+    try {
+      await resend.sendMail(data);
+      toast.success('We will get back to you soon');
+    } catch (error) {
+      console.log(error);
+    }
     reset();
   };
 
@@ -48,7 +40,7 @@ export default function ContactForm() {
                 placeholder="email"
                 className="input input-bordered"
                 required
-                {...register("email")}
+                {...register('email')}
               />
             </div>
             <div className="form-control w-full">
@@ -60,7 +52,7 @@ export default function ContactForm() {
                 placeholder="Name"
                 className="input input-bordered"
                 required
-                {...register("name")}
+                {...register('name')}
               />
             </div>
           </div>
@@ -74,7 +66,7 @@ export default function ContactForm() {
                 placeholder="Number"
                 className="input input-bordered"
                 required
-                {...register("phone")}
+                {...register('phone')}
               />
             </div>
           </div>
@@ -87,9 +79,10 @@ export default function ContactForm() {
               </div>
               <select
                 className="select select-bordered"
-                {...register("medium")}
+                {...register('medium')}
+                value="By Phone"
               >
-                <option selected>By Phone</option>
+                <option>By Phone</option>
                 <option>By Email</option>
               </select>
             </label>
@@ -103,7 +96,7 @@ export default function ContactForm() {
               placeholder="Number"
               className="textarea textarea-bordered h-24"
               required
-              {...register("message")}
+              {...register('message')}
             />
           </div>
           <div className="form-control mt-6">

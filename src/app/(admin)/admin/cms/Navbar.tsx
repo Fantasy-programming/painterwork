@@ -1,8 +1,7 @@
-"use client";
-
-import { signOut } from "next-auth/react";
-import React from "react";
-import Link from "next/link";
+'use client';
+import { signOut } from 'next-auth/react';
+import React from 'react';
+import Link from 'next/link';
 
 function Navbar() {
   return (

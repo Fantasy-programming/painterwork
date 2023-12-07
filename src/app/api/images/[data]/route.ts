@@ -1,22 +1,16 @@
-import { NextResponse, NextRequest } from "next/server";
-import { Db, GridFSBucket, ObjectId } from "mongodb";
+import { NextResponse, NextRequest } from 'next/server';
 
-import Posts, { IPosts } from "@utils/posts";
-import connectToDb from "@utils/connectDB";
+import Posts, { IPosts } from '@/models/Post';
+import connectToDb from '@/lib/connectDB';
 
 export const revalidate = 0;
-
-interface Request {
-  params: { data: string };
-}
 
 export const GET = async (
   _req: NextRequest,
   { params }: { params: { data: string } },
 ) => {
   try {
-    const { client, bucket } = await connectToDb();
-
+    const { bucket } = await connectToDb();
     const { data } = params;
 
     const files = await bucket
@@ -26,7 +20,7 @@ export const GET = async (
       .toArray();
 
     if (files.length === 0) {
-      return NextResponse.json({ error: "No file found" }, { status: 500 });
+      return NextResponse.json({ error: 'No file found' }, { status: 500 });
     }
 
     // the result is an array and i take the first element found
@@ -37,12 +31,15 @@ export const GET = async (
 
     return new NextResponse(stream, {
       headers: {
-        "Content-Type": file.contentType || "application/octet-stream",
+        'Content-Type': file.contentType || 'application/octet-stream',
       },
     });
   } catch (e) {
-    console.error("Error:", e);
-    return NextResponse.json({ error: "Get 2 server Error" }, { status: 500 });
+    console.error('Error:', e);
+    return NextResponse.json(
+      { error: 'G2-Images: Internal Server Error' },
+      { status: 500 },
+    );
   }
 };
 
@@ -50,7 +47,7 @@ export const DELETE = async (
   req: NextRequest,
   { params }: { params: { data: string } },
 ) => {
-  const { client, bucket } = await connectToDb();
+  const { bucket } = await connectToDb();
 
   try {
     const { data } = params;
@@ -72,11 +69,11 @@ export const DELETE = async (
 
     bucket.delete(file._id);
 
-    return NextResponse.json({ msg: "ok" });
+    return NextResponse.json({ msg: 'ok' });
   } catch (e) {
     console.log(e);
     return NextResponse.json(
-      { error: "Delete: Internal Server Error" },
+      { error: 'D-Images: Internal Server Error' },
       { status: 500 },
     );
   }

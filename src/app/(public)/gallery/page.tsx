@@ -1,20 +1,9 @@
-import Gallery from "@/components/Gallery";
-import { url } from "@utils/env";
+import imageService from '@/db/imageService';
 
-const getData = async () => {
-  console.log("url", url);
-  try {
-    const res = await fetch(`${url}/api/images`, {
-      cache: "no-store",
-    });
-    return await res.json();
-  } catch (e) {
-    console.log(e);
-  }
-};
+import Gallery from '@/components/Gallery';
 
 export default async function GalleryPage() {
-  const data = await getData();
+  const data = await imageService.getAll();
   return (
     <>
       <section className=" p-10  md:p-20">

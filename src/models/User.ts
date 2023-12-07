@@ -1,7 +1,11 @@
-import { model, models } from "mongoose";
-import { Schema } from "mongoose";
+import { Schema, model, models, Model, Document } from 'mongoose';
 
-const userSchema = new Schema(
+export interface IUser extends Document {
+  email: string;
+  password: string;
+}
+
+const userSchema = new Schema<IUser>(
   {
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -9,4 +13,7 @@ const userSchema = new Schema(
   { timestamps: true },
 );
 
-export default models.User || model("User", userSchema);
+const UserModel: Model<IUser> =
+  models?.User || model<IUser>('User', userSchema);
+
+export default UserModel;

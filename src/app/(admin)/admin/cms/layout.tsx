@@ -1,13 +1,17 @@
-import { authOptions } from "@utils/auth";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { authOptions } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
-import Navbar from "./Navbar";
+import Navbar from './Navbar';
 
-export default async function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const session = await getServerSession(authOptions);
   if (!session) {
-    redirect("/admin/login/?callbackUrl=/admin/cms");
+    redirect('/admin/login/?callbackUrl=/admin/cms');
   }
 
   return (

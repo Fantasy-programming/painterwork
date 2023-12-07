@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["localhost", "https://painterwork.vercel.app"],
+    domains: ['localhost', 'https://painterwork.vercel.app'],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "painterwork.vercel.app",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'painterwork.vercel.app',
+        pathname: '**',
       },
     ],
   },
