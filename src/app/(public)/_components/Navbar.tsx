@@ -8,8 +8,6 @@ function Navbar() {
     if (typeof window !== 'undefined' && window.localStorage) {
       const storedDarkMode = localStorage.getItem('isDark');
       return storedDarkMode ? JSON.parse(storedDarkMode) : false;
-    } else {
-      return false;
     }
   });
 
@@ -29,6 +27,7 @@ function Navbar() {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
+              <title>burger menu</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -37,20 +36,12 @@ function Navbar() {
               />
             </svg>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
+          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             <li>
-              <a>Info</a>
-              <ul className="p-2">
-                <li>
-                  <Link href="/#estimator">Price Estimator</Link>
-                </li>
-                <li>
-                  <Link href="/#colors">Available Colors</Link>
-                </li>
-              </ul>
+              <Link href="/#estimator">Price Estimator</Link>
+            </li>
+            <li>
+              <Link href="/#colors">Available Colors</Link>
             </li>
             <li>
               <Link href="/gallery">Our Work</Link>
@@ -96,6 +87,7 @@ function Navbar() {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
+            <title>sun icon</title>
             <circle cx="12" cy="12" r="5" />
             <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
           </svg>
@@ -117,7 +109,8 @@ function Navbar() {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            <title>moon icon</title>
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
         </label>
       </div>

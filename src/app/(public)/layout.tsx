@@ -7,6 +7,7 @@ import { Inter } from 'next/font/google';
 
 import Footer from './_components/Footer';
 import Navbar from './_components/Navbar';
+import Animate from './_components/Animate';
 
 import '@/globals.css';
 
@@ -25,12 +26,14 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="colorwork">
       <body className={inter.className}>
-        <div className="min-h-screen pattern1">
-          <Navbar />
-          <NextAuthProvider>{children}</NextAuthProvider>
-          <Footer />
-        </div>
-        <Analytics />
+        <Animate>
+          <div className="min-h-screen pattern1">
+            <Navbar />
+            <NextAuthProvider>{children}</NextAuthProvider>
+            <Footer />
+          </div>
+          <Analytics />
+        </Animate>
       </body>
     </html>
   );

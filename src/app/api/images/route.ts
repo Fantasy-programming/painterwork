@@ -28,7 +28,7 @@ export const POST = async (req: NextRequest) => {
           description = value as string;
         }
 
-        if (typeof value == 'object' && value instanceof File) {
+        if (typeof value === 'object' && value instanceof File) {
           image = `${Date.now()}_${value.name ?? 'image'}`;
 
           const buffer = Buffer.from(await value.arrayBuffer());

@@ -27,6 +27,7 @@ function Search({ searchText }: { searchText: string }) {
       />
       <button
         className="btn uppercase btn-outline btn-primary"
+        type="button"
         onClick={() =>
           (document.getElementById('newModal') as HTMLFormElement)?.showModal()
         }

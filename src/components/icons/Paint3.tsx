@@ -12,6 +12,7 @@ const SvgComponent = (props: any) => (
     viewBox="0 0 510 510"
     {...props}
   >
+    <title>paint-icon</title>
     <linearGradient
       id="c"
       x1={193.349}

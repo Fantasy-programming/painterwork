@@ -21,7 +21,7 @@ export const Color = ({ name = 'Colorname', code = '', more = false }) => {
         className="card w-36 bg-base-100 shadow-xl hover:scale-105 duration-300"
       >
         <figure>
-          <div className="bg-primary h-28 w-full"></div>
+          <div className="bg-primary h-28 w-full" />
         </figure>
         <div className="card-body p-1">
           <h2 className="card-title justify-center text-sm">{name}</h2>
@@ -37,7 +37,7 @@ export const Color = ({ name = 'Colorname', code = '', more = false }) => {
   return (
     <div className="card w-36 bg-slate-50 shadow-xl hover:scale-105 duration-300">
       <figure>
-        <div className="h-28 w-full" style={style}></div>
+        <div className="h-28 w-full" style={style} />
       </figure>
       <div className="card-body p-1">
         <h2 className="card-title text-slate-700 justify-center text-sm">

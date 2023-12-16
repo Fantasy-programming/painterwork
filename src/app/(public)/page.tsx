@@ -20,16 +20,19 @@ export default async function Home() {
           width={300}
           height={300}
           className="hidden lg:block absolute bottom-28 rotate-90 -left-32 fill-secondary"
+          aria-hidden="true"
         />
         <Paint2
           width={200}
           height={200}
           className="hidden lg:block absolute top-5 rotate-90 right-24 fill-accent"
+          aria-hidden="true"
         />
         <Paint1
           width={300}
           height={300}
           className="hidden lg:block absolute -bottom-12 -rotate-12 -right-7 fill-primary"
+          aria-hidden="true"
         />
 
         <main className="flex items-center flex-col justify-center h-full p-40">
@@ -52,6 +55,7 @@ export default async function Home() {
           width={250}
           height={250}
           className="hidden lg:block absolute -bottom-12 rotate-90 right-5 fill-accent"
+          aria-hidden="true"
         />
         <div className="diff aspect-[16/9] w-full md:w-1/2">
           <div className="diff-item-1">
@@ -60,6 +64,7 @@ export default async function Home() {
               height={500}
               alt="daisy"
               src="/images/after.webp"
+              aria-hidden="true"
             />
           </div>
           <div className="diff-item-2">
@@ -70,7 +75,7 @@ export default async function Home() {
               src="/images/before.webp"
             />
           </div>
-          <div className="diff-resizer"></div>
+          <div className="diff-resizer" />
         </div>
         <div className="w-full md:w-1/2 text-center md:text-left">
           <h2 className="text-2xl leading-loose">Transform Your Space</h2>
