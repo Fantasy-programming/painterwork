@@ -1,9 +1,17 @@
-## Colorworks
+<div align="center">
 
-This is a website for some painting company.
+<h1> Colorworks </h1>
 
-Stack: Next.JS, mongodb, re-send
-Libraries: Framer, next-auth, react-colorful
+<p>This is a website for some painting company.</p>
+
+</div>
+
+## Stack
+
+- Next.js
+- MongoDB (mongoose) (Got some problem with vercel free tier lambda)
+- Resend
+- Framer motion (Not that good)
 
 ### Features
 

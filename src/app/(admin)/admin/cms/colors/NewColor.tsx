@@ -76,7 +76,7 @@ const NewColor: React.FC<{ url: string }> = ({ url }) => {
           </form>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button>Close</button>
+          <button type="submit">Close</button>
         </form>
       </dialog>
     </>

@@ -13,9 +13,9 @@ const Posts: React.FC<{ data: GalleryElement[]; url: string }> = ({
   return (
     <div>
       <div className="grid container grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
-        {data?.map((item: GalleryElement, index: number) => (
+        {data?.map((item: GalleryElement) => (
           <div
-            key={index}
+            key={item._id}
             className="border bg-base-100 shadow-lg rounded-lg hover:scale-105 duration-300"
           >
             <div className="rounded-t-lg relative w-full h-[200px]">
@@ -34,6 +34,7 @@ const Posts: React.FC<{ data: GalleryElement[]; url: string }> = ({
               <p className="font-bold">{item.description}</p>
               <div className="flex justify-end">
                 <button
+                  type="button"
                   onClick={async () => {
                     await imageService.deleteOne(item._id, url);
                     router.refresh();

@@ -14,21 +14,19 @@ const page = async ({
     query?: string;
   };
 }) => {
-  const query = searchParams?.query || '';
-  const rawdata = await imageService.getAll();
-  const data = searchFilter(query, rawdata) as GalleryElement[];
+  const query = searchParams?.query ?? '';
+  const rawdata: GalleryElement[] = await imageService.getAll();
+  const data = searchFilter(query, rawdata);
 
   return (
-    <>
-      <div className="p-10">
-        <h1 className="text-2xl text-primary uppercase">Images Showcase</h1>
-        <div className="my-10 ">
-          <Search searchText="Search images" />
-          <Posts data={data} url={url || ''} />
-          <NewPost url={url || ''} />
-        </div>
+    <div className="p-10">
+      <h1 className="text-2xl text-primary uppercase">Images Showcase</h1>
+      <div className="my-10 ">
+        <Search searchText="Search images" />
+        <Posts data={data} url={url || ''} />
+        <NewPost url={url || ''} />
       </div>
-    </>
+    </div>
   );
 };
 

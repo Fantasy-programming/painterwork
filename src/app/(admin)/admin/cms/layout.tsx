@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 export default async function Layout({
   children,
 }: {
-  children: React.ReactNode;
+  children: Readonly<React.ReactNode>;
 }) {
   const session = await getServerSession(authOptions);
   if (!session) {

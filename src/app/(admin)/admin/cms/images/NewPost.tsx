@@ -84,7 +84,7 @@ const NewPost: React.FC<{ url: string }> = ({ url }) => {
                 className="textarea textarea-bordered w-full"
                 placeholder="Bio"
                 {...register('description', { required: true })}
-              ></textarea>
+              />
             </div>
 
             <div className="mb-4">
@@ -120,7 +120,7 @@ const NewPost: React.FC<{ url: string }> = ({ url }) => {
           </form>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button>Close</button>
+          <button type="submit">Close</button>
         </form>
       </dialog>
     </>
