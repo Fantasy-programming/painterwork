@@ -11,7 +11,7 @@
 - Next.js
 - MongoDB (mongoose) (Got some problem with vercel free tier lambda)
 - Resend
-- Framer motion (Not that good)
+- Framer motion & react-colorful
 
 ### Features
 
